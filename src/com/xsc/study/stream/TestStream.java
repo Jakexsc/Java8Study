@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.function.BinaryOperator;
+import java.util.stream.IntStream;
 
 import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.*;
@@ -145,7 +145,7 @@ public class TestStream {
         System.out.println(testTransaction2);
 
         // (3)查找所有来自于剑桥的交易员,并按姓名排序
-        List<String> testTransaction3= transactions.stream()
+        List<String> testTransaction3 = transactions.stream()
                 .filter(transaction -> transaction.getTrader().getCity().equals("Cambridge"))
                 .map(transaction -> transaction.getTrader().getName())
                 .distinct()
@@ -180,5 +180,18 @@ public class TestStream {
         Optional<Transaction> testTransaction8 = transactions.stream()
                 .min(comparing(Transaction::getValue));
         System.out.println(testTransaction8);
+
+        // 映射成int类 避免装箱操作
+        int mapIntSum = menus.stream()
+                .mapToInt(Dish::getCalories)
+                .sum();
+        System.out.println(mapIntSum);
+
+        // IntStream.rangeClosed实践统计出1-100的偶数数量
+        long count = IntStream.rangeClosed(1, 100)
+                .filter(n -> n % 2 == 0)
+                .count();
+        System.out.println(count);
     }
+
 }

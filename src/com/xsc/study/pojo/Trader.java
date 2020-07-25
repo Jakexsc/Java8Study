@@ -1,4 +1,4 @@
-package com.xsc.study.stream;
+package com.xsc.study.pojo;
 
 /**
  * @author Jakexsc

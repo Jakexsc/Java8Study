@@ -2,6 +2,8 @@ package com.xsc.study.stream;
 
 
 import com.xsc.study.pojo.Dish;
+import com.xsc.study.pojo.Trader;
+import com.xsc.study.pojo.Transaction;
 
 import java.util.Arrays;
 import java.util.List;

@@ -24,7 +24,7 @@ public class TestStream {
                 new Dish("pizza", true, 550, Dish.Type.OTHER),
                 new Dish("prawns", false, 300, Dish.Type.FISH),
                 new Dish("salmon", false, 450, Dish.Type.FISH));
-        List<String> menu = menus.parallelStream()
+        List<String> menu1 = menus.parallelStream()
                 // 筛选卡路里大于300的菜单
                 .filter(dish -> dish.getCalories() > 300)
                 // 取出菜名
@@ -33,6 +33,16 @@ public class TestStream {
                 .limit(3)
                 // 放入集合
                 .collect(toList());
-        System.out.println(menu);
+        List<String> menu2 = menus.parallelStream()
+                // 筛选卡路里大于300的菜单
+                .filter(dish -> dish.getCalories() > 300)
+                // 取出菜名
+                .map(Dish::getName)
+                // 忽略2个
+                .skip(2)
+                // 放入集合
+                .collect(toList());
+        System.out.println(menu1);
+        System.out.println(menu2);
     }
 }

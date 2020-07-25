@@ -5,6 +5,7 @@ import com.xsc.study.pojo.Dish;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 
@@ -57,7 +58,7 @@ public class TestStream {
                 .collect(toList());
         System.out.println(nameLength);
 
-        // flatMap测试 flatMap 让流扁平化
+        // flatMap测试 flatMap 让流扁平化 => 映射
         List<String> words = Arrays.asList("Hello", "world");
         List<String> word = words.stream()
                 // 将每个单词转换为由其字母构成的数组
@@ -97,5 +98,10 @@ public class TestStream {
                         .filter(j -> (i + j) % 3 == 0)
                         .map(j -> new int[]{i, j}))
                 .collect(toList());
+
+        // 测试reduce => 归约
+        Integer reduce1 = numbers.stream().reduce(0, (a, b) -> a + b);
+        Optional<Integer> reduce = numbers.stream().reduce(Integer::sum);
+        System.out.println(reduce);
     }
 }

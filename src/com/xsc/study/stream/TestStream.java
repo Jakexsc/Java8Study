@@ -195,9 +195,13 @@ public class TestStream {
 
         // 求出1-100 能组成勾股定理的组合
         IntStream.rangeClosed(1, 100)
+                // 将IntStream流转换成Stream流
                 .boxed()
+                // 将所有生成的三元数流扁平化成一个流
                 .flatMap(a ->
+                        // 这里的没必要从1开始 可以理解成2个for的条件
                         IntStream.rangeClosed(a, 100).filter(b -> Math.sqrt(a * a + b * b) % 1 == 0)
+                                // 如果使用map会为每个元素返回另一个int，所以使用mapToObj返回一个int对象数组
                                 .mapToObj(b -> new int[]{a, b, (int) Math.sqrt(a * a + b * b)}).filter(t -> t[2] % 1 == 0)
                 ).limit(5).forEach(t -> {
             System.out.println(t[0] + "," + t[1] + "," + t[2]);

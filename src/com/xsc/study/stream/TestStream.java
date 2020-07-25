@@ -29,7 +29,7 @@ public class TestStream {
                 .filter(dish -> dish.getCalories() > 300)
                 // 取出菜名
                 .map(Dish::getName)
-                // 只选出三个
+                // 只选出头三个
                 .limit(3)
                 // 放入集合
                 .collect(toList());

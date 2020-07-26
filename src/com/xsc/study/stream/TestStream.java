@@ -1,6 +1,7 @@
 package com.xsc.study.stream;
 
 
+import com.xsc.study.common.CreateDish;
 import com.xsc.study.pojo.Dish;
 import com.xsc.study.pojo.Trader;
 import com.xsc.study.pojo.Transaction;
@@ -11,6 +12,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.IntStream;
 
+import static com.xsc.study.common.CreateDish.getListDish;
 import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.*;
 
@@ -20,16 +22,7 @@ import static java.util.stream.Collectors.*;
  **/
 public class TestStream {
     public static void main(String[] args) {
-        List<Dish> menus = Arrays.asList(
-                new Dish("pork", false, 800, Dish.Type.MEAT),
-                new Dish("beef", false, 700, Dish.Type.MEAT),
-                new Dish("chicken", false, 400, Dish.Type.MEAT),
-                new Dish("french fries", true, 530, Dish.Type.OTHER),
-                new Dish("rice", true, 350, Dish.Type.OTHER),
-                new Dish("season fruit", true, 120, Dish.Type.OTHER),
-                new Dish("pizza", true, 550, Dish.Type.OTHER),
-                new Dish("prawns", false, 300, Dish.Type.FISH),
-                new Dish("salmon", false, 450, Dish.Type.FISH));
+        List<Dish> menus = getListDish();
         // 第一次测试stream
         List<String> menu1 = menus.parallelStream()
                 // 筛选卡路里大于300的菜单
